@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>{{ App.name }}
+			- Login</title>
+		<!-- Tell the browser to be responsive to screen width -->
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Font Awesome -->
+		<link
+		rel="stylesheet" href="{{asset("admin/plugins/fontawesome-free/css/all.min.css")}}">
+		<!-- Ionicons -->
+		<link
+		rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+		<!-- icheck bootstrap -->
+		<link
+		rel="stylesheet" href="{{asset("admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css")}}">
+		<!-- Theme style -->
+		<link
+		rel="stylesheet" href="{{asset("admin/dist/css/adminlte.min.css")}}">
+		<!-- Google Font: Source Sans Pro -->
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+	</head>
+
+
+	<body class="hold-transition login-page">
+		<div class="login-box">
+			<div class="login-logo">
+				<a href="{{path("app.login")}}">
+					{{App.name}}
+				</a>
+			</div>
+			<!-- /.login-logo -->
+			<div class="card">
+				<div class="card-body login-card-body">
+					{# <p class="login-box-msg" style="font-size: 15px;">Connecter pour commencer votre session</p> #}
+					<form method="post">
+						{% if error %}
+							<div class="alert alert-danger">
+								<strong>Erreur!</strong>
+								{{ error.messageKey|trans(error.messageData, 'security') }}
+							</div>
+						{% endif %}
+						{% for message in app.flashes('success') %}
+							<div class="alert alert-success alert-dismissible" id="myAlert">
+								<strong>Succès!</strong>
+								{{message}}
+							</div>
+						{% endfor %}
+						{% for message in app.flashes('error') %}
+							<div class="alert alert-danger alert-dismissible" id="myAlert">
+								<strong>Erreur!</strong>
+								{{message}}
+							</div>
+						{% endfor %}
+						{% for message in app.flashes('warning') %}
+							<div class="alert alert-warning alert-dismissible" id="myAlert">
+								<strong>Attention!</strong>
+								{{message}}
+							</div>
+						{% endfor %}
+						<div class="input-group mb-3">
+							<input type="text" value="{{ last_username }}" name="username" class="form-control" placeholder="Nom d'utilisateur" required autofocus>
+							<div class="input-group-append">
+								<div class="input-group-text">
+									<span class="fas fa-user"></span>
+								</div>
+							</div>
+						</div>
+						<div class="input-group mb-3">
+							<input type="password" class="form-control" name="password" placeholder="Mot de passe" required>
+							<div class="input-group-append">
+								<div class="input-group-text">
+									<span class="fas fa-lock"></span>
+								</div>
+							</div>
+						</div>
+						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+						{# <div class="row">
+							<div class="col-12 text-center">
+								<div class="icheck-primary">
+									<input type="checkbox" checked name="remember_me" id="remember">
+									<label for="remember">
+										Se souvenir de moi
+									</label>
+								</div>
+							</div>
+							<!-- /.col -->
+						</div> #}
+						<hr>
+						<div class="row">
+							<div class="col-12">
+								<button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+								<!-- /.col -->
+							</div>
+						</div>
+					</form>
+
+					<hr>
+					{# <div class="social-auth-links text-center mb-3">
+						<a href="{{path("app.forgotten.password")}}" class="btn btn-block btn-danger">
+
+							<i class="fa fa-unlock-alt mr-2"></i>
+							Mot de passe oublié
+						</a>
+					</div> #}
+				</div>
+			</div>
+		</div>
+		<!-- /.login-box -->
+
+		<!-- jQuery -->
+		<script src="{{asset("admin/plugins/jquery/jquery.min.js")}}"></script>
+		<!-- Bootstrap 4 -->
+		<script src="{{asset("admin/plugins/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
+		<!-- AdminLTE App -->
+		<script src="{{asset("admin/dist/js/adminlte.min.js")}}"></script>
+	</body>
+
+</html>

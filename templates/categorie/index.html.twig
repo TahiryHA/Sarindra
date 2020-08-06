@@ -1,0 +1,53 @@
+{% extends 'area/base.html.twig' %}
+
+{% block title %}Categorie index{% endblock %}
+
+{% block left_sidebar %}
+	{% include 'area/common/left-sidebar.twig' with { active: 'categorie', active_: null } %}
+{% endblock %}
+
+{% block body %}
+
+    <table id="categorieDatatable" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+            <th>Département</th>
+                <th>Catégorie</th>
+                <th>Salaire</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie in categories %}
+            <tr>
+            <td>{{ categorie.departement.name }}</td>
+                <td>{{ categorie.name }}</td>
+                <td>{{ categorie.salaire|number_format(2, '.', ',') ~ ' Ar ' }}</td>
+                <td>
+                    <a href="{{ path('categorie_show', {'id': categorie.id}) }}">show</a>
+                    <a href="{{ path('categorie_edit', {'id': categorie.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('categorie_new') }}">Create new</a>
+{% endblock %}
+{% block js %}
+	<script>
+$("#categorieDatatable").DataTable({
+
+"searching": true,
+"order": [
+[0, "DESC"]
+],
+"responsive": true,
+"autoWidth": false
+});
+	</script>
+{% endblock %}

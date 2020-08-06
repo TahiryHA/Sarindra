@@ -1,0 +1,104 @@
+{% set langue = 'en' %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+	<head>
+		<title>
+		{% block title %}
+			{{ App.name }}
+
+		{% endblock %}
+		</title>
+		{# <link rel="icon" type="image/*" href="{{asset('public/images/data/logo_cnaps.png')}}"> #}
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		{% include "area/common/links.html.twig" %}
+		{% block style %}{% endblock %}
+	</head>
+
+	<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+		<div class="wrapper">
+
+			{% include "area/common/navbar.twig" %}
+
+			<!-- Main Sidebar Container -->
+			<aside
+				class="main-sidebar sidebar-dark-primary elevation-4">
+				<a href="index3.html" class="brand-link">
+					<img src="{{asset('admin/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+					<span class="brand-text font-weight-light">{{App.name}}</span>
+				</a>
+
+				{% block left_sidebar %}
+
+					{% include 'area/common/left-sidebar.twig' with { active : 'index' , active_: 'index' } %}
+
+				{% endblock %}
+
+			</aside>
+			<!-- Content Wrapper. Contains page content -->
+			<div class="content-wrapper">
+				{% include "area/common/breadcrumb.html.twig" %}
+				<!-- Main content -->
+				<section
+					class="content">
+					<!-- Modal -->
+					<div class="modal fade" id="modalEditProfileUser">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title title">Modification profile</h4>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<input type="text" name="" id="idUser" value="" style="display: none;">
+								<div class="modal-body"></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal fade" id="modalChangePasswordUser">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title title">Modification mot de passe</h4>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<input type="text" name="" id="idUserPassword" value="" style="display: none;">
+								<div class="modal-body"></div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<div id="body">
+								{% include "area/common/flash_messages.html.twig" %}
+								{% block body %}{% endblock %}
+							</div>
+						</div>
+						<!-- /.container-fluid -->
+					</div>
+				</section>
+				<!-- /.content -->
+			</div>
+			<!-- /.content-wrapper -->
+			{% include "area/common/footer.html.twig" %}<!-- All modals -->
+			<!-- Modal edit user--><div id='editModalDiv'> </div>
+
+			<!-- Control Sidebar -->
+			<aside
+				class="control-sidebar control-sidebar-dark"><!-- Control sidebar content goes here -->
+			</aside>
+			<!-- /.control-sidebar -->
+		</div>
+		<!-- ./wrapper -->
+
+		{% include "area/common/script.html.twig" %}
+		{% block js %}{% endblock %}
+	</body>
+</html>

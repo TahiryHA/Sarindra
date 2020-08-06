@@ -1,0 +1,58 @@
+{% extends 'area/base.html.twig' %}
+
+{% block title %}Presence index
+{% endblock %}
+
+{% block left_sidebar %}
+	{% include 'area/common/left-sidebar.twig' with { active: 'personnel', active_: 'absence' } %}
+{% endblock %}
+
+{% block body %}
+	
+	
+	<!-- /.card -->
+	{{ form_start(form) }}
+	<!-- Horizontal Form -->
+	<div class="card card-primary">
+		<div class="card-header">
+			<h3 class="card-title"></h3>
+		</div>
+		<!-- /.card-header -->
+		<!-- form start -->
+		<div class="card-body">
+			<div class="form-group row">
+				<label for="inputPassword3" class="col-sm-2 col-form-label">Département *</label>
+				<div class="col-sm-10">
+					{{ form_widget(form.departement, {
+                        'attr' : {
+                          'class' : "custom-select",
+
+                        }
+                      }) }}
+				</div>
+			</div>
+		</div>
+		<!-- /.card-body -->
+		<div class="card-footer">
+			<a class="float-left" href="{{ path('absence_index') }}">Retour à la liste</a>
+			<button type="submit" class="btn btn-primary float-right">Commencer</button>
+		</div>
+		<!-- /.card-footer -->
+
+	</div>
+	{{ form_end(form) }}
+
+{% endblock %}
+{% block js %}
+	<script>
+$("#presenceDatatable").DataTable({
+
+"searching": true,
+"order": [
+[0, "DESC"]
+],
+"responsive": true,
+"autoWidth": false
+});
+	</script>
+{% endblock %}

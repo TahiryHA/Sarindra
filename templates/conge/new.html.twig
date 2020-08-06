@@ -1,0 +1,13 @@
+{% extends 'area/base.html.twig' %}
+
+{% block title %}New Conge{% endblock %}
+
+{% block left_sidebar %}
+	{% include 'area/common/left-sidebar.twig' with { active: 'personnel', active_: 'conge' } %}
+{% endblock %}
+
+{% block body %}
+
+    {{ include('conge/_form.html.twig') }}
+
+{% endblock %}

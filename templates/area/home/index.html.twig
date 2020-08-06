@@ -1,0 +1,69 @@
+{% extends "area/base.html.twig" %}
+
+{% block left_sidebar %}
+	{% include 'area/common/left-sidebar.twig' with { active: 'dashboard', active_: null } %}
+{% endblock %}
+
+{% block body %}
+<div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-primary">
+              <div class="inner">
+                <h3>{{data.personnels}}</h3>
+
+                <p>TOTAL PERSONNELS</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="{{path('personnel_index')}}" class="small-box-footer bg-dark">Plus d'info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+  
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-primary">
+              <div class="inner">
+                <h3>{{data.categories}}</h3>
+
+                <p>TOTAL CATEGORIES</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="{{path('categorie_index')}}" class="small-box-footer bg-dark">Plus d'info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-primary">
+              <div class="inner">
+                <h3>{{data.departements}}</h3>
+
+                <p>TOTAL DEPARTEMENTS</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="{{path('departement_index')}}" class="small-box-footer bg-dark">Plus d'info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-primary">
+              <div class="inner">
+                <h3>{{data.conges}}</h3>
+
+                <p>TOTAL CONGES</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="{{path('conge_index')}}" class="small-box-footer bg-dark">Plus d'info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+{% endblock %}

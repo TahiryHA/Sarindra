@@ -1,0 +1,36 @@
+<!-- /.card -->
+{{ form_start(form) }}
+
+{% if editMode is defined %}
+
+{% do form.personnel.setRendered %}
+{% do form.departement.setRendered %}
+
+
+{% endif %}
+<!-- Horizontal Form -->
+<div class="card card-primary">
+	<div class="card-header">
+		<h3 class="card-title"></h3>
+	</div>
+	<!-- /.card-header -->
+	<!-- form start -->
+	<div class="card-body">
+		<div
+			class="form-group ">
+	
+			{{ form_widget(form) }}
+	
+		</div>
+
+	</div>
+	<!-- /.card-body -->
+	<div class="card-footer">
+		<a class="float-left" href="{{ path('conge_index') }}">Retour à la liste</a>
+		<button type="submit" class="btn btn-primary float-right">Valider</button>
+	</div>
+	<!-- /.card-footer -->
+</div>
+
+
+{{ form_end(form) }}

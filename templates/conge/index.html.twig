@@ -1,0 +1,55 @@
+{% extends 'area/base.html.twig' %}
+
+{% block title %}Conge index{% endblock %}
+
+{% block left_sidebar %}
+	{% include 'area/common/left-sidebar.twig' with { active: 'rapport', active_: 'rapport_conge' } %}
+{% endblock %}
+
+{% block body %}
+
+    <table id="congeDatatable" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Personnel</th>
+                <th>Motif</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for conge in conges %}
+            <tr>
+                <td>{{ conge.createdAt ? conge.createdAt|localizeddate('none', 'none', locale(), null, 'EEEE d MMMM Y')|capitalize : '' }}</td>
+                <td>{{ conge.personnel.name }}</td>
+                <td>{{ conge.motif }}</td>
+                <td>{{ conge.status ? "Approuvé" : "Non approuvé" }}</td>
+                <td>
+                    <a href="{{ path('conge_show', {'id': conge.id}) }}">show</a>
+                    <a href="{{ path('conge_edit', {'id': conge.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('conge_new') }}">Create new</a>
+{% endblock %}
+{% block js %}
+	<script>
+$("#congeDatatable").DataTable({
+
+"searching": true,
+"order": [
+[0, "DESC"]
+],
+"responsive": true,
+"autoWidth": false
+});
+	</script>
+{% endblock %}

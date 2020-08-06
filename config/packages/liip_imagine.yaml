@@ -1,0 +1,40 @@
+# See dos how to configure the bundle: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
+liip_imagine:
+    filter_sets:
+        thumb:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [360,230]
+                    mode: outbound
+        hero:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [150,150]
+                    mode: outbound
+        article:
+            quality: 75
+            filters:
+                fixed:
+                    width: 291
+                    height: 293
+                thumbnail: { size: [291,293], mode: outbound}
+                
+
+        category:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [291,293]
+                    mode: outbound
+        gallery:
+            filters:
+                relative_resize:
+                    heighten: 800
+                    # Will allow smaller images to take 800px of height, 
+                    # width will change accordingly since aspect ration is still valid.
+                    allow_upscale: true 
+
+    # valid drivers options include "gd" or "gmagick" or "imagick"
+    driver: "gd"

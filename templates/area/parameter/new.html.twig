@@ -1,0 +1,52 @@
+{% extends 'area/base.html.twig' %}
+
+{% block body %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+<!-- /.card -->
+<!-- Horizontal Form -->
+<div class="card card-primary">
+  <div class="card-header">
+    <h3 class="card-title">{{ (editMode) ? 'Modifier ce' : "Ajouter un" }} paramètre </h3>
+  </div>
+  <!-- /.card-header -->
+  <!-- form start -->
+  {{ form_start(form) }}
+    <div class="card-body">
+      <div class="form-group row">
+        <label for="inputPassword3" class="col-sm-2 col-form-label">Nom *</label>
+        <div class="col-sm-10">
+         {{form_row(form.name, {'attr':{
+          'placeholder':"Donner un nom"
+        }})}}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputPassword3" class="col-sm-2 col-form-label">Code *</label>
+        <div class="col-sm-10">
+         {{form_row(form.code, {'attr':{
+          'placeholder':"Donner un code"
+        }})}}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputPassword3" class="col-sm-2 col-form-label">Value *</label>
+        <div class="col-sm-10">
+         {{form_row(form.value, {'attr':{
+          'placeholder':"Donner une valeur"
+        }})}}
+        </div>
+      </div>
+     
+    
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer">
+      <a class="float-left" href="{{ path('parameter_index') }}">Retour à la liste</a>
+      <button type="submit" class="btn btn-primary float-right">Enregistrer</button>
+    </div>
+    <!-- /.card-footer -->
+  {{ form_end(form) }}
+</div>
+<!-- /.card -->
+{% endblock %}

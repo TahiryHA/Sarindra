@@ -1,0 +1,145 @@
+<!-- Sidebar -->
+<div
+	class="sidebar">
+	<!-- Sidebar Menu -->
+	<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{{app.user.image}}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{{app.user.username}}</a>
+        </div>
+      </div>
+	<nav class="mt-2">
+	
+		<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+			{% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_ADMIN') %}
+			
+			<li class="nav-item">
+				<a href="{{path("index")}}" class="nav-link {% if active == 'dashboard' %} active {% endif %}">
+					<i class="nav-icon fas fa-tachometer-alt"></i>
+					<p>
+						Tableau de bord
+					</p>
+				</a>
+			</li>
+			{% endif %}
+			
+			{% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYER') %}
+			<li class="nav-item has-treeview {% if active == 'personnel' %} menu-open {% endif %}">
+				<a href="javascript:void()" class="nav-link{% if active == 'personnel' %} active {% endif %}">
+					<i class="nav-icon fas fa-circle nav-icon"></i>
+					<p>
+						Personnels
+						<i class="right fas fa-angle-left"></i>
+					</p>
+				</a>
+				<ul class="nav nav-treeview">
+					<li class="nav-item">
+						<a href="{{path('absence_criteria')}}" class="nav-link {% if active_ == 'absence' %} active {% endif %}">
+							<i class="nav-icon far fa-circle text-primary"></i>
+							<p>
+								Absence
+							</p>
+						</a>
+
+					</li>
+					<li class="nav-item">
+						<a href="{{path('conge_new')}}" class="nav-link {% if active_ == 'conge' %} active {% endif %}">
+							<i class="nav-icon far fa-circle text-primary"></i>
+							<p>
+								Congé
+							</p>
+						</a>
+
+					</li>
+					<li class="nav-item">
+						<a href="{{path('personnel_index')}}" class="nav-link {% if active_ == 'list' %} active {% endif %}">
+							<i class="nav-icon far fa-circle text-primary"></i>
+							<p>
+								Liste des personnels
+							</p>
+						</a>
+
+					</li>
+					
+					{% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_ADMIN') %}
+					<li class="nav-item">
+						<a href="{{path('personnel_new')}}" class="nav-link {% if active_ == 'add' %} active {% endif %}">
+							<i class="nav-icon far fa-circle text-primary"></i>
+							<p>
+								Ajout personnel
+							</p>
+						</a>
+
+					</li>
+					{% endif %}
+
+					
+				</ul>
+			</li>
+			{% endif %}
+
+			<li class="nav-item has-treeview {% if active == 'rapport' %} menu-open {% endif %}">
+				<a href="javascript:void()" class="nav-link{% if active == 'rapport' %} active {% endif %}">
+					<i class="nav-icon fas fa-circle nav-icon"></i>
+					<p>
+						Rapport
+						<i class="right fas fa-angle-left"></i>
+					</p>
+				</a>
+				<ul class="nav nav-treeview">
+				<li class="nav-item">
+						<a href="{{path('absence_index')}}" id="" class="nav-link {% if active_ == 'rapport_absence' %} active {% endif %}">
+							<i class="nav-icon far fa-circle text-primary"></i>
+							<p>
+								Absence
+							</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{path('conge_index')}}" id="" class="nav-link {% if active_ == 'rapport_conge' %} active {% endif %}">
+							<i class="nav-icon far fa-circle text-primary"></i>
+							<p>
+								Conge
+							</p>
+						</a>
+					</li>
+				</ul>
+			</li>
+			{% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_ADMIN')%}
+
+			<li class="nav-item">
+					<a href="{{path("categorie_index")}}" class="nav-link {% if active == 'categorie' %} active {% endif %}">
+						<i class="nav-icon fas fa-circle nav-icon"></i>
+						<p>
+							Catégorie
+						</p>
+					</a>
+				</li>
+			<li class="nav-item">
+					<a href="{{path("departement_index")}}" class="nav-link {% if active == 'departement' %} active {% endif %}">
+						<i class="nav-icon fas fa-circle nav-icon"></i>
+						<p>
+							Département
+						</p>
+					</a>
+				</li>
+		
+
+				<li class="nav-item">
+					<a href="{{path("user.index")}}" class="nav-link {% if active == 'user' %} active {% endif %}">
+						<i class="nav-icon fas fa-users"></i>
+						<p>
+							Utilisateur
+						</p>
+					</a>
+				</li>
+			{% endif %}
+
+
+		</ul>
+	</nav>
+	<!-- /.sidebar-menu -->
+</div>
+<!-- /.sidebar -->

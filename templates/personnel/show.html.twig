@@ -1,0 +1,38 @@
+{% extends 'area/base.html.twig' %}
+
+{% block title %}Personnel{% endblock %}
+
+{% block left_sidebar %}
+	{% include 'area/common/left-sidebar.twig' with { active: 'personnel', active_: 'list' } %}
+{% endblock %}
+
+{% block body %}
+
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ personnel.name }}</td>
+            </tr>
+            <tr>
+                <th>Département</th>
+                <td>{{ personnel.departement.name }}</td>
+            </tr>
+            <tr>
+                <th>Catégorie</th>
+                <td>{{ personnel.categorie.name }}</td>
+            </tr>
+            <tr>
+                <th>Salaire par année</th>
+                <td>{{ personnel.categorie.salaire|number_format(2, '.', ',') ~ ' Ar ' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('personnel_index') }}" class="btn btn-secondary m-1">back to list</a>
+
+    <a href="{{ path('personnel_edit', {'id': personnel.id}) }}" class="btn btn-success float-right m-1">edit</a>
+
+    {{ include('personnel/_delete_form.html.twig') }}
+{% endblock %}

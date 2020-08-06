@@ -1,0 +1,54 @@
+{{form_start(userForm,{'attr':{
+    'id':"formAddUser"
+}})}}
+<div class="row">
+    <div class="col-12 col-sm-12">
+        <div class="form-group row d-none" id="error_message">
+            <div class="col-sm-12">
+                <div class="alert alert-danger alert-dismissible">
+                    <strong>Erreur!</strong> <span class="message"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-12">
+        <div class="form-group row">
+            <label for="" class="col-sm-4 col-form-label">Rôle *</label>
+            <div class="col-sm-8">
+                <select class="form-control select2bs4" name="role" data-dropdown-css-class="select2-danger"
+                    style="width: 100%;">
+                    <option value="ROLE_ADMIN">Administrateur</option>
+                    <option value="ROLE_EMPLOYER">Employeur</option>
+                    <option value="ROLE_WORKER">Travailleur</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="form-group row">
+            <label for="" class="col-sm-4 col-form-label">Nom d'utilisateur *</label>
+            <div class="col-sm-8">
+                {{form_widget(userForm.username,{'attr':{
+                    'class':"form-control",
+                    'placeholder':'Nom d\'utilisateur'
+                }})}}
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="form-group row">
+            <label for="" class="col-sm-4 col-form-label">Adresse e-mail *</label>
+            <div class="col-sm-8">
+                {{form_row(userForm.email,{'attr':{
+                    'class':"form-control",
+                    'placeholder':'Adresse e-mail'
+                }})}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer no-bd">
+    <button type="submit" id="" class="btn btn-primary">Ajouter</button>
+</div>
+{{form_end(userForm)}}

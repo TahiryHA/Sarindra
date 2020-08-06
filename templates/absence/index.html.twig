@@ -1,0 +1,68 @@
+{% extends 'area/base.html.twig' %}
+
+{% block title %}Absence index{% endblock %}
+
+{% block left_sidebar %}
+	{% include 'area/common/left-sidebar.twig' with { active: 'rapport', active_: 'rapport_absence' } %}
+{% endblock %}
+
+{% block body %}
+
+    <table id="absenceDatatable" class="table table-bordered table-striped">
+        <thead>
+					<tr>
+						<th>Date</th>
+						<th>Département</th>
+						<th>Present</th>
+						<th>Absent</th>
+						<th>Actions</th>
+
+
+					</tr>
+				</thead>
+				<tbody>
+                
+					{% for absence in absences %}
+						
+						<tr>
+							<td>{{ absence.createdAt|localizeddate('none', 'none', locale(), null, 'EEEE d MMMM Y')|capitalize }}</td>
+							<td>
+								<a href="">{{ absence.departement.name }}</a>
+							</td>
+
+                            <td>{{absence.present|length}}</td>
+                            <td>{{ ( absence.absent != null ) ?  (absence.absent|length) :"Aucun absent" }}</td>
+
+							<td>
+								<a href="{{ path('absence_show', {'id' : absence.id }) }}" class="btn-sm"> <i class="fa fa-eye"></i>  </a>
+								<a href="" class="btn-sm"> <i class="fa fa-print"></i>  </a>
+								
+							</td>
+
+							
+
+
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="66">Aucun étudiant</td>
+						</tr>
+
+					{% endfor %}
+				</tbody>
+    </table>
+
+{% endblock %}
+{% block js %}
+	<script>
+$("#absenceDatatable").DataTable({
+
+"searching": true,
+"order": [
+[0, "DESC"]
+],
+"responsive": true,
+"autoWidth": false
+});
+	</script>
+{% endblock %}

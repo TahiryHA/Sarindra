@@ -1,0 +1,72 @@
+{% extends 'area/base.html.twig' %}
+
+{% block title %}Absence{% endblock %}
+
+{% block left_sidebar %}
+	{% include 'area/common/left-sidebar.twig' with { active: 'rapport', active_: 'rapport_absence' } %}
+{% endblock %}
+
+
+{% block body %}
+  <div class="text-center">
+		<h3>Rapport de présence du : </h3>
+		<p>Date :
+			{{ absence.createdAt|localizeddate('none', 'none', locale(), null, 'EEEE d MMMM Y') }}</p>
+	</div>
+	<div class="card">
+
+		<div class="card-header">
+			<div class="d-flex align-items-center">
+				<h4
+					class="card-title">
+					Département :
+					<span class="badge badge-pill badge-primary">{{absence.departement.name}}</span>
+				</h4>
+			</div>
+		</div>
+		<div class="card-body">
+			<table id="personnelDatatable" class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nom</th>
+						<th>Status</th>
+
+
+					</tr>
+				</thead>
+				<tbody>
+					{% for personnel in absence.departement.personnels %}
+						<tr>
+							<td>
+								<a href="">{{ personnel.Id }}</a>
+							</td>
+							<td>{{personnel.name}}</td>
+							<td>
+                            {% if personnel.id in absence.present %}
+								<span class="badge bg-info">Présent</span>
+                            {% else %}
+                                
+								<span class="badge bg-secondary">Absent</span>
+                            {% endif %}
+
+							</td>
+
+
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="66">Aucun étudiant</td>
+						</tr>
+
+					{% endfor %}
+				</tbody>
+				
+			</table>
+
+		</div>
+		<div class="card-footer">
+			<a class="float-left" href="{{ path('absence_index') }}">Retour à la liste</a>
+		</div>
+	</div>
+{% endblock %}

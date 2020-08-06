@@ -1,0 +1,14 @@
+{% extends 'area/base.html.twig' %}
+
+{% block title %}Edit Categorie{% endblock %}
+
+{% block left_sidebar %}
+	{% include 'area/common/left-sidebar.twig' with { active: 'categorie', active_: null } %}
+{% endblock %}
+
+{% block body %}
+
+    {{ include('categorie/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+{% endblock %}

@@ -1,0 +1,25 @@
+.connected {
+    display: inline-block;
+    background: #00CF67;
+    border-radius: 50%;
+    width: 9px;
+    height: 9px;
+    margin-right: 4px;
+}
+.disconnected {
+    display: inline-block;
+    background: red;
+    border-radius: 50%;
+    width: 9px;
+    height: 9px;
+    margin-right: 4px;
+}
+
+/* Style the Image Used to Trigger the Modal */
+img {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+/* img:hover {opacity: 0.7;} */

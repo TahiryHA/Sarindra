@@ -1,0 +1,57 @@
+{% extends 'area/base.html.twig' %}
+
+{% block title %}Personnel index{% endblock %}
+
+{% block left_sidebar %}
+	{% include 'area/common/left-sidebar.twig' with { active: 'personnel', active_: 'list' } %}
+{% endblock %}
+
+{% block body %}
+
+    <table id="personnelDatatable" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Département</th>
+                <th>Catégorie</th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+  
+        {% for personnel in personnels %}
+            <tr>
+                <td>{{ personnel.name }}</td>
+                
+                <td> {{ personnel.departement.name }} </td>
+                <td>{{ categories[personnel.categorie.id] }}</td>
+
+                <td>
+                    <a href="{{ path('personnel_show', {'id': personnel.id}) }}">show</a>
+                    <a href="{{ path('personnel_edit', {'id': personnel.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('personnel_new') }}">Create new</a>
+{% endblock %}
+{% block js %}
+	<script>
+$("#personnelDatatable").DataTable({
+
+"searching": true,
+"order": [
+[0, "DESC"]
+],
+"responsive": true,
+"autoWidth": false
+});
+	</script>
+{% endblock %}

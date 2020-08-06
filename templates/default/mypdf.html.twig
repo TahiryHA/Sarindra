@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="icon" type="image/*" href="{{asset('public/images/data/logo_cnaps.png')}}">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{title}}</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	</head>
+	<body>
+		<div class="clearfix">
+			<p class="float-left">Dossier numéro :
+				<b>{{data.DOSSIERNUMERO}}</b>
+			</p>
+			<p class="float-right">Déclaration du
+				{{ data.CREATED }}
+				par
+				<b>{{data.EMPLOYEURMATRICULE}}</b>
+			</p>
+		</div>
+		<br>
+		{% if "dn" in data.DOCUENV and "pp" not in data.DOCUENV  %}
+
+			<h3>{{ 'dn'|trans }}</h3>
+
+			<table class="table table-sm">
+				<thead>
+					<tr>
+
+						<th>Informations</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Nombre de PERIODES/DNS à envoyer</td>
+						<td>
+
+							{{data.NBPERIODEDN}}
+						</td>
+
+					</tr>
+					<tr>
+						<td>Periode</td>
+						<td>
+
+							{{data.INFPERIODEDN}}
+							pour le
+							{{data.INFTRIMDN}}. Trimestre
+						</td>
+
+					</tr>
+					<tr>
+						<td>Retraite Complementaire</td>
+						<td>
+
+							{{ (data.INFRCDN) ? "Avec R.Complémentaire" : "Sans R.Complémentaire"}}
+
+						</td>
+
+					</tr>
+					<tr>
+						<td>Effectif
+						</td>
+						<td>
+
+							{{data.INFEFFDN}}
+						</td>
+
+					</tr>
+					<tr>
+						<td>Total Salaire non plafonnes</td>
+						<td>
+
+							{{data.INFTSNPDN|number_format(2, '.', ',') ~ ' Ar ' }}
+						</td>
+
+					</tr>
+
+					<tr>
+						<td>Cotisation de la période</td>
+						<td>
+
+							{{data.INFCOTIPERDN|number_format(2, '.', ',') ~ ' Ar ' }}
+						</td>
+
+					</tr>
+					<tr>
+						<td>Document rattaché</td>
+						<td>
+
+							{{ (not data.FILEDN) ?  "<span class='badge badge-warning'>Manquant</span>" : data.FILEDN}}
+
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+		{% elseif "pp" in data.DOCUENV and "dn" not in data.DOCUENV %}
+
+			<h3>{{ 'pp'|trans }}</h3>
+
+
+			<table class="table table-sm">
+				<thead>
+					<tr>
+						<th>Informations</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Mode de paiement</td>
+						<td>
+
+							{% set mp = data.MODEPAIE %}
+
+							{% if mp == 1 %}
+								<b>Banque</b>
+								par
+								{% set mpb = data.MODEPAIEBANQUE %}
+								{% if mpb == 1 %}
+									ordre de virement
+								{% elseif mpb == 2 %}
+									avis de crédit
+								{% elseif mpb == 3 %}
+									versement en espèces
+								{% elseif mpb == 4 %}
+									avis de virement CCP
+								{% else %}
+									remise de chèques
+								{% endif %}
+
+								. Nombre de période:
+								{{data.NBPERIODEBANQUE}}
+							{% elseif mp == 2 %}
+								<b>Mvola</b>
+								Transaction:
+								{{data.NBTRANSMVOLA}}
+							{% else %}
+								<b>Airtel Money.</b>
+								Nombre d'envoi:
+								{{data.NBENVOIEAIRTELMONEY}}
+							{% endif %}
+						</td>
+
+					</tr>
+					{% if mp == 1 %}
+						<tr>
+							<td>Reference</td>
+							<td>
+
+								{{data.INFREFPP}}
+							</td>
+						</tr>
+						<tr>
+							<td>Date</td>
+							<td>
+
+								{{data.INFDATEPP}}
+							</td>
+						</tr>
+						<tr>
+							<td>Banque de virement CNaPS</td>
+							<td>
+
+								{{data.INFBVCPP}}
+							</td>
+						</tr>
+						<tr>
+							<td>Montant</td>
+							<td>
+
+								{{data.INFMONTANTPP|number_format(2, '.', ',') ~ ' Ar ' }}
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td>Période</td>
+							<td>
+								{{data.INFPERIODEPP}}
+								pour le
+								{{data.INFTRIMPP}}. Trimestre
+							</td>
+						</tr>
+						<tr>
+							<td>Numéro de transaction</td>
+							<td>
+								{{data.INFNUMTRANSPP}}
+							</td>
+						</tr>
+						<tr>
+							<td>Numéro de téléphone</td>
+							<td>
+								{{" (+261) " ~ data.INFNUMTELPP}}
+							</td>
+						</tr>
+						<tr>
+							<td>Montant de transaction</td>
+							<td>
+								{{data.INFMONTANTTRANSPP|number_format(2, '.', ',') ~ ' Ar ' }}
+							</td>
+						</tr>
+					{% endif %}
+					<tr>
+						<td>Document rattaché</td>
+						<td>
+
+							{{ (not data.FILEPP) ? "<span class='badge badge-warning'>Manquant</span>" : data.FILEPP }}
+
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+		{% else %}
+			<h3>{{ 'dn'|trans }}</h3>
+
+			<table class="table table-sm">
+				<thead>
+					<tr>
+
+						<th>Informations</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Nombre de PERIODES/DNS à envoyer</td>
+						<td>
+
+							{{data.NBPERIODEDN}}
+						</td>
+
+					</tr>
+					<tr>
+						<td>Periode</td>
+						<td>
+
+							{{data.INFPERIODEDN}}
+							pour le
+							{{data.INFTRIMDN}}. Trimestre
+						</td>
+
+					</tr>
+					<tr>
+						<td>Retraite Complementaire</td>
+						<td>
+
+							{{ (data.INFRCDN) ? "Avec R.Complémentaire" : "Sans R.Complémentaire"}}
+
+						</td>
+
+					</tr>
+					<tr>
+						<td>Effectif
+						</td>
+						<td>
+
+							{{data.INFEFFDN}}
+						</td>
+
+					</tr>
+					<tr>
+						<td>Total Salaire non plafonnes</td>
+						<td>
+
+							{{data.INFTSNPDN|number_format(2, '.', ',') ~ ' Ar ' }}
+						</td>
+
+					</tr>
+
+					<tr>
+						<td>Cotisation de la période</td>
+						<td>
+
+							{{data.INFCOTIPERDN|number_format(2, '.', ',') ~ ' Ar ' }}
+						</td>
+
+					</tr>
+					<tr>
+						<td>Document rattaché</td>
+						<td>
+
+							{{ (not data.FILEDN) ?  "<span class='badge badge-warning'>Manquant</span>" : data.FILEDN}}
+
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+			<h3>{{ 'pp'|trans }}</h3>
+
+
+			<table class="table table-sm">
+				<thead>
+					<tr>
+						<th>Informations</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Mode de paiement</td>
+						<td>
+
+							{% set mp = data.MODEPAIE %}
+
+							{% if mp == 1 %}
+								<b>Banque</b>
+								par
+								{% set mpb = data.MODEPAIEBANQUE %}
+								{% if mpb == 1 %}
+									ordre de virement
+								{% elseif mpb == 2 %}
+									avis de crédit
+								{% elseif mpb == 3 %}
+									versement en espèces
+								{% elseif mpb == 4 %}
+									avis de virement CCP
+								{% else %}
+									remise de chèques
+								{% endif %}
+
+								. Nombre de période:
+								{{data.NBPERIODEBANQUE}}
+							{% elseif mp == 2 %}
+								<b>Mvola</b>
+								Transaction:
+								{{data.NBTRANSMVOLA}}
+							{% else %}
+								<b>Airtel Money.</b>
+								Nombre d'envoi:
+								{{data.NBENVOIEAIRTELMONEY}}
+							{% endif %}
+						</td>
+
+					</tr>
+					{% if mp == 1 %}
+						<tr>
+							<td>Reference</td>
+							<td>
+
+								{{data.INFREFPP}}
+							</td>
+						</tr>
+						<tr>
+							<td>Date</td>
+							<td>
+
+								{{data.INFDATEPP}}
+							</td>
+						</tr>
+						<tr>
+							<td>Banque de virement CNaPS</td>
+							<td>
+
+								{{data.INFBVCPP}}
+							</td>
+						</tr>
+						<tr>
+							<td>Montant</td>
+							<td>
+
+								{{data.INFMONTANTPP|number_format(2, '.', ',') ~ ' Ar ' }}
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td>Période</td>
+							<td>
+								{{data.INFPERIODEPP}}
+								pour le
+								{{data.INFTRIMPP}}. Trimestre
+							</td>
+						</tr>
+						<tr>
+							<td>Numéro de transaction</td>
+							<td>
+								{{data.INFNUMTRANSPP}}
+							</td>
+						</tr>
+						<tr>
+							<td>Numéro de téléphone</td>
+							<td>
+								{{" (+261) " ~ data.INFNUMTELPP}}
+							</td>
+						</tr>
+						<tr>
+							<td>Montant de transaction</td>
+							<td>
+								{{data.INFMONTANTTRANSPP|number_format(2, '.', ',') ~ ' Ar ' }}
+							</td>
+						</tr>
+					{% endif %}
+					<tr>
+						<td>Document rattaché</td>
+						<td>
+
+							{{ (not data.FILEPP) ? "<span class='badge badge-warning'>Manquant</span>" : data.FILEPP }}
+
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+
+		{% endif %}
+		<P>
+			<b>Observation :</b>&nbsp;
+			{{ (data.OBSERVATION) ? data.OBSERVATION : "Aucun observation"}}</P>
+
+
+	</body>
+</html>

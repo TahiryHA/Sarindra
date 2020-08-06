@@ -1,0 +1,244 @@
+/* @extend display-flex; */
+display-flex,
+.form-flex,
+.form-date-group,
+.steps ul,
+.title,
+.title .step-number,
+.actions ul li a,
+.form-radio-flex,
+.form-find {
+  display: flex;
+  display: -webkit-flex;
+}
+
+/* @extend list-type-ulli; */
+list-type-ulli,
+.steps ul,
+.actions ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+label.error {
+  display: block;
+  /* position: absolute; */
+  top: 0px;
+  right: 0;
+  color: #f63726; }
+  label.error:after {
+    font-family: 'Material-Design-Iconic-Font';
+    /* position: absolute; */
+    /* content: '\f135'; */
+    right: 20px;
+    top: 50px;
+    font-size: 13px;
+    color: #f63726; }
+
+input.error {
+  border: 1px solid #f63726; }
+
+.steps ul {
+  flex-direction: column;
+  -moz-flex-direction: column;
+  -webkit-flex-direction: column;
+  -o-flex-direction: column;
+  -ms-flex-direction: column;
+  position: relative;
+  padding-left: 40px;
+  padding-top: 60px;
+}
+
+.steps ul li {
+  padding-bottom: 40px;
+  position: relative;
+  z-index: 99;
+}
+
+.steps ul li a {
+  text-decoration: none;
+  color: #222;
+}
+
+.steps ul:after {
+  position: absolute;
+  content: '';
+  width: 2px;
+  height: 180px;
+  /* background: #ebebeb; */
+  left: 64px;
+  top: 50%;
+  transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  z-index: 9;
+}
+
+
+
+.current .title .step-number {
+  background: #007bff;
+  color: #fff;
+}
+
+.current .title .step-text {
+  color: #007bff;
+}
+
+.content h3 {
+  display: none;
+}
+
+.actions ul {
+  padding-left: 45px;
+  padding-right: 55px;
+}
+
+.actions ul .disabled {
+  display: none;
+}
+
+.actions ul li {
+  float: right;
+}
+
+.actions ul li:first-child {
+  float: left;
+}
+
+.actions ul li:first-child a {
+  background: #e8e8e8;
+  color: #999;
+}
+
+.val{
+  float:right;
+  right: -40px;
+  width: 140px;
+  height: 50px;
+  color: #fff;
+  background: #007bff;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  -o-align-items: center;
+  -ms-align-items: center;
+  justify-content: center;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  -o-justify-content: center;
+  -ms-justify-content: center;
+  text-decoration: none;
+
+}
+
+.actions ul li a {
+  width: 140px;
+  height: 50px;
+  color: #fff;
+  background: #007bff;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  -o-align-items: center;
+  -ms-align-items: center;
+  justify-content: center;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  -o-justify-content: center;
+  -ms-justify-content: center;
+  text-decoration: none;
+}
+
+.steps.clearfix {
+  display: none;
+}
+
+#slider-margin {
+  height: 9px;
+  border: none;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  -ms-box-shadow: none;
+  background: #e8e8e8;
+  border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -o-border-radius: 0px;
+  -ms-border-radius: 0px;
+  position: relative;
+  margin-top: 110px;
+}
+
+#slider-margin .noUi-marker-horizontal.noUi-marker-large,
+#slider-margin .noUi-marker-horizontal.noUi-marker {
+  height: 0px;
+}
+
+#slider-margin .noUi-connect {
+  background: #007bff;
+}
+
+#slider-margin .noUi-connects {
+  border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -o-border-radius: 0px;
+  -ms-border-radius: 0px;
+}
+
+#slider-margin .noUi-handle {
+  width: 15px;
+  height: 30px;
+  top: -12px;
+  background: #e8e8e8;
+  outline: none;
+  border: none;
+  right: -15px;
+  border: 1px solid #4966b1;
+  border-radius: 0px;
+}
+
+#slider-margin .noUi-handle:after,
+#slider-margin .noUi-handle:before {
+  width: 0px;
+}
+
+#slider-margin .noUi-handle .noUi-tooltip {
+  bottom: 33px;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: #007bff;
+  padding: 0px;
+}
+
+#slider-margin .noUi-pips {
+  width: 96%;
+}
+
+#slider-margin .noUi-pips .noUi-value {
+  top: -50px;
+  font-size: 16px;
+  color: #666;
+}
+
+#slider-margin .noUi-pips .noUi-value:before {
+  content: '$';
+}
+
+#slider-margin .noUi-pips .noUi-value-horizontal {
+  transform: none;
+  -moz-transform: none;
+  -webkit-transform: none;
+  -o-transform: none;
+  -ms-transform: none;
+}
+
+
+/*# sourceMappingURL=style.css.map */

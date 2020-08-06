@@ -1,0 +1,25 @@
+{{ form_start(form) }}
+
+	
+    <div class="card card-primary">
+		<div class="card-header">
+			<h3 class="card-title"></h3>
+		</div>
+		<!-- /.card-header -->
+		<!-- form start -->
+		<div class="card-body">
+            <div class="form-group row">
+				<div class="col-sm-12">
+					{{ form_widget(form) }}
+				</div>
+			</div>
+		</div>
+		<!-- /.card-body -->
+		<div class="card-footer">
+			<a class="float-left" href="{{ path('personnel_index') }}">Retour à la liste</a>
+			<button type="submit" class="btn btn-primary float-right">Commencer</button>
+		</div>
+		<!-- /.card-footer -->
+
+	</div>
+{{ form_end(form) }}

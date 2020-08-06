@@ -1,0 +1,91 @@
+{% extends "area/base.html.twig" %}
+
+{% block title %}
+			{{ App.name }} -
+			Utilisateurs
+
+		{% endblock %}
+
+{% block left_sidebar %}
+    {% include 'area/common/left-sidebar.twig' with { active: 'user', active_: null } %}
+{% endblock %}
+
+{% block body %}
+
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex align-items-center">
+            <h4 class="card-title"><span class="fa fa-users"></span> Utilisateur <span class="badge badge-pill badge-primary">{{users|length}}</span></h4>
+            <div class="ml-auto">
+                <button class="btn btn-success btn-round btnAddUser" data-toggle="modal"
+                    data-target="#modalAddUser">
+                    <i class="fa fa-plus"></i>
+                    Ajouter
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+
+        <div class="modal fade" id="modalAddUser">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Ajouter un utilisateur</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalEditUser">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modifier l'utilisateur</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <input type="text" name="" id="idUser" value="" style="display: none;">
+                    <div class="modal-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table id="userDatatable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Nom d'utilisateur</th>
+                    <th>Adresse e-mail</th>
+                    <th>Rôle</th>
+                    <th style="width: 10%;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Nom d'utilisateur</th>
+                    <th>Adresse e-mail</th>
+                    <th>Rôle</th>
+                    <th>Actions</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+    <script>
+        $(document).ready(function() {
+            liste("user.list", "#userDatatable");
+        })
+    </script>
+{% endblock %}
