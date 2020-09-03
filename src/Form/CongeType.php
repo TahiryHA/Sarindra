@@ -52,16 +52,18 @@ class CongeType extends AbstractType
             ]
         ])
         ->add('dateDep', DateType::class, [
-            // 'label' => false,
-            'placeholder' => false,
-            'required' => true,
+            'widget' => 'single_text',
+            // this is actually the default format for single_text
+            'format' => 'yyyy-MM-dd',
             'data' => new \DateTime('now'),
+
         ])
         ->add('dateFin', DateType::class, [
-            // 'label' => false,
-            'placeholder' => false,
-            'required' => false,
-            'data' => new \DateTime('now'),
+            'widget' => 'single_text',
+            // this is actually the default format for single_text
+            'format' => 'yyyy-MM-dd',
+            // 'data' => new \DateTime('now'),
+
         ])
         ->add('status',ChoiceType::class,[
             'choices' => [
