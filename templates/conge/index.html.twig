@@ -26,8 +26,8 @@
                 <td>{{ conge.motif }}</td>
                 <td>{{ conge.status ? "Approuvé" : "Non approuvé" }}</td>
                 <td>
-                    <a href="{{ path('conge_show', {'id': conge.id}) }}">show</a>
-                    <a href="{{ path('conge_edit', {'id': conge.id}) }}">edit</a>
+                    <a href="{{ path('conge_show', {'id': conge.id}) }}">Afficher</a>
+                    <a href="{{ path('conge_edit', {'id': conge.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -38,7 +38,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('conge_new') }}">Create new</a>
+    <a href="{{ path('conge_new') }}">Ajouter</a>
 {% endblock %}
 {% block js %}
 	<script>

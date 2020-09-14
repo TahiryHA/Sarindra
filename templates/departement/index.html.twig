@@ -12,7 +12,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,8 +22,8 @@
                 <td>{{ departement.id }}</td>
                 <td>{{ departement.name }}</td>
                 <td>
-                    <a href="{{ path('departement_show', {'id': departement.id}) }}">show</a>
-                    <a href="{{ path('departement_edit', {'id': departement.id}) }}">edit</a>
+                    <a href="{{ path('departement_show', {'id': departement.id}) }}">Afficher</a>
+                    <a href="{{ path('departement_edit', {'id': departement.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -34,7 +34,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('departement_new') }}">Create new</a>
+    <a href="{{ path('departement_new') }}">Ajouter</a>
 {% endblock %}
 {% block js %}
 	<script>

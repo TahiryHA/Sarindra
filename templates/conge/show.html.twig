@@ -43,9 +43,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('conge_index') }}" class="btn btn-secondary m-1">back to list</a>
+    <a href="{{ path('conge_index') }}" class="btn btn-secondary m-1">Retour à la liste</a>
 
-    <a href="{{ path('conge_edit', {'id': conge.id}) }}" class="btn btn-success float-right m-1">edit</a>
+    <a href="{{ path('conge_edit', {'id': conge.id}) }}" class="btn btn-success float-right m-1">Modifier</a>
 
     {{ include('conge/_delete_form.html.twig') }}
 {% endblock %}

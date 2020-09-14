@@ -24,8 +24,8 @@
                 <td>{{ categorie.name }}</td>
                 <td>{{ categorie.salaire|number_format(2, '.', ',') ~ ' Ar ' }}</td>
                 <td>
-                    <a href="{{ path('categorie_show', {'id': categorie.id}) }}">show</a>
-                    <a href="{{ path('categorie_edit', {'id': categorie.id}) }}">edit</a>
+                    <a href="{{ path('categorie_show', {'id': categorie.id}) }}">Afficher</a>
+                    <a href="{{ path('categorie_edit', {'id': categorie.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -36,7 +36,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('categorie_new') }}">Create new</a>
+    <a href="{{ path('categorie_new') }}">Ajouter</a>
 {% endblock %}
 {% block js %}
 	<script>
